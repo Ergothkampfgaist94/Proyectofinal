@@ -2,6 +2,7 @@ package Clientes;
 
 import Colaboradores.*;
 import javax.swing.JOptionPane;
+import estructurasdatos.*;
 
 public class MetodoClientes extends MetodoColaboradores {
 

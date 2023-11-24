@@ -1,6 +1,7 @@
 package Colaboradores;
 
 import javax.swing.JOptionPane;
+import estructurasdatos.*;
 
 public class MetodoColaboradores {
 

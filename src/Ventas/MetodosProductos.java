@@ -1,6 +1,7 @@
 package Ventas;
 
 import javax.swing.JOptionPane;
+import estructurasdatos.*;
 
 public class MetodosProductos {
 
@@ -25,12 +26,12 @@ public class MetodosProductos {
     public String AgregarProducto() {
         try {
             while (JOptionPane.showConfirmDialog(null,
-                    "¿Desea agregar un nuevo Colaborador?")
+                    "¿Desea agregar un nuevo producto?")
                     == JOptionPane.YES_NO_OPTION) {
                 pilaProductos.apilar(new clsProductos(
                         JOptionPane.showInputDialog("Identificación del producto"),
                         JOptionPane.showInputDialog("Nombre del producto"),
-                        Integer.parseInt(JOptionPane.showInputDialog("Cantidad de unidades del´Producto")
+                        Integer.parseInt(JOptionPane.showInputDialog("Cantidad de unidades del Producto")
                         )));
                 ContProductos++;
             }

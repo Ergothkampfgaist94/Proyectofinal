@@ -16,8 +16,8 @@ public class Proyecto_empresa {
 //        menu_colab.MenuColab();
 //        MetodosHerramientas menu_inve = new MetodosHerramientas();
 //        menu_inve.MenuInv();
-        MetodoClientes menuClientes = new MetodoClientes();
-        menuClientes.MenuClien();
+//        MetodoClientes menuClientes = new MetodoClientes();
+//        menuClientes.MenuClien();
         MetodosProductos menuProductos = new MetodosProductos();
         menuProductos.MenuProd();
     }
