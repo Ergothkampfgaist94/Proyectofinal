@@ -11,6 +11,10 @@ public class MetodosProductos {
     private int ContProductos;
 
     public MetodosProductos() {
+        pilaProductos = new Pila();
+        AuxpilaProductos = new Pila();
+        cadena = "";
+        ContProductos = 0;
     }
 
     public MetodosProductos(Pila<clsProductos> pilaProductos,
@@ -31,8 +35,8 @@ public class MetodosProductos {
                 pilaProductos.apilar(new clsProductos(
                         JOptionPane.showInputDialog("Identificación del producto"),
                         JOptionPane.showInputDialog("Nombre del producto"),
-                        Integer.parseInt(JOptionPane.showInputDialog("Cantidad de unidades del Producto")
-                        )));
+                        Integer.parseInt(JOptionPane.showInputDialog("Cantidad de unidades del Producto")),
+                        Double.parseDouble(JOptionPane.showInputDialog("Valor unitario del Producto"))));
                 ContProductos++;
             }
             cadena = "Se agregaron "
@@ -49,7 +53,7 @@ public class MetodosProductos {
 
     public String MostrarPrdodu() {
         try {
-            cadena = "LISTADO DE COLABORADORES\n\n";
+            cadena = "LISTADO DE PRODUCTOS\n\n";
             while (!pilaProductos.estaVacia()) {
                 clsProductos objProdu;
                 objProdu = pilaProductos.getElemento();
@@ -118,6 +122,7 @@ public class MetodosProductos {
                             + "IDENTIFICADOR: " + objProductos.getIdProducto() + "\n"
                             + "Nombre producto: " + objProductos.getNombreProducto() + "\n"
                             + "Cantidad de unidades: " + objProductos.getCantUnidades() + "\n"
+                            + "Valor unitario: " + objProductos.getValorVenta() + "\n"
                             + "-------------------------\n";
                     AuxpilaProductos.apilar(pilaProductos.getElemento());
                     pilaProductos.desapilar();
@@ -137,6 +142,28 @@ public class MetodosProductos {
             return cadena;
         }
         return cadena;
+    }
+
+    public Object BuscarProductoOb(String identificacion) {
+        try {
+            while (!pilaProductos.estaVacia()) {
+                clsProductos objProductos;
+                objProductos = pilaProductos.getElemento();
+                if (objProductos.getIdProducto().equalsIgnoreCase(identificacion)) {
+                    AuxpilaProductos.apilar(pilaProductos.getElemento());
+                    pilaProductos.desapilar();
+                    return objProductos;
+                } else {
+                    AuxpilaProductos.apilar(pilaProductos.getElemento());
+                    pilaProductos.desapilar();
+                }
+            }
+            RetPilaProd(AuxpilaProductos);
+        } catch (Exception e) {
+            cadena = "Error al leer el inventario: " + e.getMessage();
+            return cadena;
+        }
+        return "null";
     }
 
     public String EliminarProducto(String ID) {
@@ -219,6 +246,7 @@ public class MetodosProductos {
         switch (Integer.parseInt(JOptionPane.showInputDialog("Marque la opción deseada\n"
                 + "1. Nombre producto\n"
                 + "2. Cantidad de unidades\n"
+                + "3. Valor por unidad\n"
                 + "-----------------------"))) {
 
             case 1:
@@ -226,10 +254,15 @@ public class MetodosProductos {
                         "¿Cuál es nombre Correcto?"));
                 opcion = "Nombre del Colaborador modificado con éxito";
                 break;
-            case 3:
+            case 2:
                 objProductos.setCantUnidades(Integer.parseInt(JOptionPane.showInputDialog(
                         "¿Cuál La nueva cantidad de unidades?")));
                 opcion = "unidades modificados con éxito";
+                break;
+            case 3:
+                objProductos.setValorVenta(Double.parseDouble(JOptionPane.showInputDialog(
+                        "¿Cuál es el nuevo valor unitario?")));
+                opcion = "valor modificado con éxito";
                 break;
             default:
                 opcion = "¡Error! la opción seleccionada no existe\n "
